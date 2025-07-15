@@ -7,8 +7,6 @@ dist/
 
 # misc
 .DS_Store
-.env
-.env.*
 
 # local env files
 *.local
@@ -29,3 +27,4 @@ yarn-error.log*
 
 # Mac system files
 Thumbs.db 
+config.bat
