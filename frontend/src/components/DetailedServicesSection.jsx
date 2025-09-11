@@ -1,182 +1,100 @@
 import React from 'react';
-import DetailedServiceCard from './DetailedServiceCard';
-import Slider from 'react-slick';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+
+const services = [
+  {
+    title: 'Dissertation Writing',
+    image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80',
+    description: 'Expert guidance and writing support for your dissertation, from proposal to final submission.',
+    details: 'In-depth research, professional formatting, free revisions, and plagiarism check.'
+  },
+  {
+    title: 'Coding',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80',
+    description: 'Professional coding, programming, and software development services for all levels and languages.',
+    details: 'Assignments, projects, debugging, and code reviews in Python, Java, C++, JavaScript, and more.'
+  },
+  {
+    title: 'Research Papers',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
+    description: 'In-depth research and writing for academic papers with proper citations and formatting.',
+    details: 'Thorough research, APA/MLA formatting, expert writers, and quality assured.'
+  },
+  {
+    title: 'Literature Reviews',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
+    description: 'Comprehensive literature reviews with critical analysis and synthesis.',
+    details: 'Critical analysis, multiple sources, clear synthesis, and expert insights.'
+  },
+  {
+    title: 'Thesis Writing',
+    image: 'https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=600&q=80',
+    description: 'Full thesis writing and editing services with expert academic writers.',
+    details: 'Original research, expert guidance, full support, and quality guarantee.'
+  },
+  {
+    title: 'Editing & Proofreading',
+    image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80',
+    description: 'Professional editing and proofreading services to perfect your academic work.',
+    details: 'Grammar check, style improvement, format fixing, and quality enhancement.'
+  },
+];
 
 const DetailedServicesSection = () => {
-  const services = [
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap w-8 h-8 text-[#D32F2F]"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
-      ),
-      title: "Dissertation Writing",
-      description: "Expert guidance and writing support for your dissertation, from proposal to final submission.",
-      price: "$25/page",
-      features: [
-        "In-depth research",
-        "Professional formatting",
-        "Free revisions",
-        "Plagiarism check"
-      ]
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen-tool w-8 h-8 text-[#D32F2F]"><path d="m12 19 7-7 3 3-7 7-3-3z"></path><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="m2 2 7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-      ),
-      title: "Essay Writing",
-      description: "Professional essay writing services for all academic levels and subjects.",
-      price: "$15/page",
-      features: [
-        "Original content",
-        "Any subject",
-        "24/7 support",
-        "Quick delivery"
-      ]
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-microscope w-8 h-8 text-[#D32F2F]"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg>
-      ),
-      title: "Research Papers",
-      description: "In-depth research and writing for academic papers with proper citations and formatting.",
-      price: "$20/page",
-      features: [
-        "Thorough research",
-        "APA/MLA formatting",
-        "Expert writers",
-        "Quality assured"
-      ]
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-8 h-8 text-[#D32F2F]"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
-      ),
-      title: "Literature Reviews",
-      description: "Comprehensive literature reviews with critical analysis and synthesis.",
-      price: "$22/page",
-      features: [
-        "Critical analysis",
-        "Multiple sources",
-        "Clear synthesis",
-        "Expert insights"
-      ]
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-8 h-8 text-[#D32F2F]"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
-      ),
-      title: "Thesis Writing",
-      description: "Full thesis writing and editing services with expert academic writers.",
-      price: "$28/page",
-      features: [
-        "Original research",
-        "Expert guidance",
-        "Full support",
-        "Quality guarantee"
-      ]
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open w-8 h-8 text-[#D32F2F]"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-      ),
-      title: "Review Papers",
-      description: "Detailed review papers and article critiques across all disciplines.",
-      price: "$18/page",
-      features: [
-        "Detailed analysis",
-        "Critical evaluation",
-        "Clear structure",
-        "Professional tone"
-      ]
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-8 h-8 text-[#D32F2F]"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
-      ),
-      title: "Case Studies",
-      description: "In-depth case study analysis and writing services for various disciplines.",
-      price: "$23/page",
-      features: [
-        "Thorough analysis",
-        "Clear methodology",
-        "Professional writing",
-        "Expert review"
-      ]
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square w-8 h-8 text-[#D32F2F]"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-      ),
-      title: "Editing & Proofreading",
-      description: "Professional editing and proofreading services to perfect your academic work.",
-      price: "$12/page",
-      features: [
-        "Grammar check",
-        "Style improvement",
-        "Format fixing",
-        "Quality enhancement"
-      ]
-    }
-  ];
-
+  const [modalData, setModalData] = useState(null);
+  const navigate = useNavigate();
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7 }}
-      className="py-20 bg-gray-50"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Carousel for md and up */}
-        <div className="hidden md:block">
-          <Slider
-            dots={true}
-            infinite={true}
-            speed={1200}
-            slidesToShow={4}
-            slidesToScroll={1}
-            responsive={[
-              { breakpoint: 1280, settings: { slidesToShow: 3 } },
-              { breakpoint: 1024, settings: { slidesToShow: 2 } },
-              { breakpoint: 768, settings: { slidesToShow: 1 } },
-            ]}
-            arrows={false}
-            autoplay={true}
-            autoplaySpeed={1000}
-          >
-            {services.map((service, index) => (
-              <div key={index} className="px-4">
-                <DetailedServiceCard
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  price={service.price}
-                  features={service.features}
-                  index={index}
-                />
-              </div>
-            ))}
-          </Slider>
-        </div>
-        {/* Vertical stack for mobile */}
-        <div className="block md:hidden space-y-8">
-          {services.map((service, index) => (
-            <DetailedServiceCard
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              price={service.price}
-              features={service.features}
-              index={index}
-            />
+    <section className="py-20 bg-neutral">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {services.map((service, idx) => (
+            <div
+              key={service.title}
+              className="relative group rounded-3xl overflow-hidden shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-300"
+              onClick={() => setModalData(service)}
+            >
+              <img src={service.image} alt={service.title} loading="lazy" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-accent/60 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-300" />
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.7, delay: 0.1 * idx }}
+                className="absolute bottom-0 left-0 p-6 z-10 w-full bg-black/40 rounded-b-3xl"
+              >
+                <h3 className="text-2xl font-extrabold text-white mb-2 drop-shadow-lg">{service.title}</h3>
+                <p className="text-white/90 text-lg mb-2 drop-shadow">{service.description}</p>
+              </motion.div>
+            </div>
           ))}
         </div>
+        {/* Modal */}
+        {modalData && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white rounded-2xl shadow-lg max-w-md w-full p-8 relative">
+              <button
+                className="absolute top-4 right-4 bg-accent/10 hover:bg-accent text-accent hover:text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl font-bold shadow transition-all duration-200 border border-accent/20"
+                onClick={() => setModalData(null)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+              <img src={modalData.image} alt={modalData.title} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+              <h2 className="text-2xl font-bold text-primary mb-2">{modalData.title}</h2>
+              <p className="text-text/80 mb-4">{modalData.details}</p>
+              <button
+                className="mt-4 px-8 py-3 rounded-full bg-accent text-white font-bold text-lg shadow hover:bg-primary transition-all duration-300"
+                onClick={() => { setModalData(null); navigate('/contact'); setTimeout(() => window.scrollTo({ top: 0, behavior: 'auto' }), 50); }}
+              >
+                Order Now
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-    </motion.section>
+    </section>
   );
 };
 

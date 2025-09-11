@@ -21,28 +21,28 @@ const stats = [
 
 const team = [
   {
-    name: 'Dr. Sarah Johnson',
-    role: 'Academic Director',
-    desc: 'Ph.D. in Literature with 15+ years of academic writing experience.',
-    img: 'https://randomuser.me/api/portraits/women/44.jpg',
+    name: 'Dr. Olivia Smith',
+    role: 'Chief Academic Officer',
+    desc: 'Ph.D. in Education, expert in curriculum design and academic leadership.',
+    img: 'https://randomuser.me/api/portraits/women/68.jpg',
   },
   {
-    name: 'Prof. Michael Chen',
-    role: 'Research Head',
-    desc: 'Expert in research methodology with numerous published papers.',
-    img: 'https://randomuser.me/api/portraits/men/32.jpg',
+    name: 'Prof. Ethan Williams',
+    role: 'Head of Research',
+    desc: 'Specialist in quantitative research and data analysis with 10+ years experience.',
+    img: 'https://randomuser.me/api/portraits/men/52.jpg',
   },
   {
-    name: 'Dr. Emily Brown',
-    role: 'Quality Assurance',
-    desc: 'Ensures the highest standards of academic writing across all projects.',
-    img: 'https://randomuser.me/api/portraits/women/65.jpg',
+    name: 'Dr. Priya Nair',
+    role: 'Quality Assurance Lead',
+    desc: 'Ensures every project meets the highest standards of academic integrity and originality.',
+    img: 'https://randomuser.me/api/portraits/women/85.jpg',
   },
   {
-    name: 'Prof. David Wilson',
-    role: 'Subject Expert',
-    desc: 'Specializes in multiple academic disciplines with 12+ years experience.',
-    img: 'https://randomuser.me/api/portraits/men/41.jpg',
+    name: 'Mr. Lucas Martin',
+    role: 'Student Success Manager',
+    desc: 'Dedicated to supporting students and ensuring timely, effective communication.',
+    img: 'https://randomuser.me/api/portraits/men/65.jpg',
   },
 ];
 
@@ -52,7 +52,7 @@ const timeline = [
   { year: '2017', event: 'Expanded services to include research and thesis writing.' },
   { year: '2019', event: 'Reached 5,000+ completed projects.' },
   { year: '2021', event: 'Launched 24/7 support and global operations.' },
-  { year: '2023', event: 'Rebranded as Globalassigntech with a new digital platform.' },
+  { year: '2023', event: 'Rebranded as EduNova with a new digital platform.' },
 ];
 
 // Timeline component (inline for now)
@@ -85,13 +85,27 @@ const AboutUs = () => {
   return (
     <div className="bg-white w-full">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-secondary text-white py-20 relative">
+      <section className="relative min-h-[50vh] flex items-center justify-center bg-gradient-to-tr from-primary via-accent to-secondary overflow-hidden">
         <img src={heroBg} alt="Books background" className="absolute inset-0 w-full h-full object-cover opacity-30 z-0" />
-        {/* Make the overlay semi-transparent to reveal the background image */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-secondary/70 z-0"></div>
-        <div className="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Globalassigntech</h1>
-          <p className="text-xl md:text-2xl font-medium">Your Trusted Partner in Academic Excellence</p>
+        <div className="absolute left-0 top-0 h-full w-3 bg-accent z-10" />
+        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-8 lg:px-12 py-20 text-left">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-xl"
+          >
+            About <span className="text-accent">EduNova</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-2xl md:text-3xl text-white/90 mb-8 max-w-2xl"
+          >
+            Your Trusted Partner in Academic Excellence
+          </motion.p>
         </div>
       </section>
 
@@ -106,7 +120,7 @@ const AboutUs = () => {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Our Story</h2>
           <p className="text-gray-700 text-lg leading-relaxed mb-4">
-            Founded in 2021, Globalassigntech has grown from a small team of dedicated academic writers to a comprehensive academic writing service trusted by students worldwide. Our journey began with a simple mission: to help students achieve academic excellence through quality writing support.
+            Founded in 2021, EduNova has grown from a small team of dedicated academic writers to a comprehensive academic writing service trusted by students worldwide. Our journey began with a simple mission: to help students achieve academic excellence through quality writing support.
           </p>
           <p className="text-gray-700 text-lg leading-relaxed mb-4">
             Over the years, we've assembled a team of highly qualified academic professionals, each bringing unique expertise and experience to our services. Our writers hold advanced degrees from prestigious universities and have extensive experience in academic writing across various disciplines.
@@ -150,8 +164,8 @@ const AboutUs = () => {
       <WhyChooseUs />
 
       {/* Leadership Team */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-16 bg-neutral">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-gray-800">Our Leadership Team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {team.map((member, i) => (

@@ -16,30 +16,29 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-sm border-b border-neutral-100 font-sans sticky top-0 z-30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="bg-white shadow-lg border-b-2 border-accent/30 font-sans sticky top-0 z-30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center select-none">
-            <span className="text-2xl font-bold tracking-tight font-sans" style={{ fontFamily: 'Poppins, Inter, sans-serif' }}>
-              <span className="text-primary font-extrabold">Global</span>
-              <span className="text-secondary font-semibold">assigntech</span>
+            <span className="text-3xl font-extrabold tracking-tight font-sans" style={{ fontFamily: 'Montserrat, Inter, sans-serif' }}>
+              <span className="text-primary">Edu</span><span className="text-accent">Nova</span>
             </span>
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex ml-10 items-center space-x-8">
+          <div className="hidden md:flex ml-10 items-center space-x-10">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`relative px-3 py-2 text-base font-medium transition-all duration-300
-                  ${location.pathname === link.to ? 'text-primary' : 'text-text'}
-                  hover:text-accent
+                className={`relative px-3 py-2 text-base font-semibold transition-all duration-300
+                  ${location.pathname === link.to ? 'text-accent border-b-2 border-accent' : 'text-text'}
+                  hover:text-primary
                   group
                 `}
               >
-                <span className="group-hover:scale-110 group-hover:text-accent transition-transform duration-300 inline-block">
+                <span className="group-hover:scale-110 group-hover:text-primary transition-transform duration-300 inline-block">
                   {link.label}
                 </span>
               </Link>
@@ -47,12 +46,12 @@ const Navbar = () => {
           </div>
 
           {/* Action Button */}
-          <div className="hidden md:block ml-6">
+          <div className="hidden md:block ml-8">
             <Link to="/contact">
               <button
-                className="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full text-base font-semibold shadow-md transition-all duration-300 animate-pulse hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="bg-accent text-white px-7 py-2 rounded-full text-base font-bold shadow-md transition-all duration-300 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-accent"
               >
-                Start Writing Now
+                Get Started
               </button>
             </Link>
           </div>
@@ -60,7 +59,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
-              className="text-text hover:text-primary focus:outline-none"
+              className="text-text hover:text-accent focus:outline-none"
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -78,10 +77,10 @@ const Navbar = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 w-72 h-full bg-white shadow-lg z-50 flex flex-col p-8"
+            className="fixed top-0 right-0 w-72 h-full bg-white shadow-2xl z-50 flex flex-col p-8 border-l-2 border-accent/30"
           >
             <button
-              className="self-end mb-8 text-text hover:text-primary focus:outline-none"
+              className="self-end mb-8 text-text hover:text-accent focus:outline-none"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
             >
@@ -92,7 +91,7 @@ const Navbar = () => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`text-lg font-medium transition-all duration-300 ${location.pathname === link.to ? 'text-primary' : 'text-text'} hover:text-accent`}
+                  className={`text-lg font-semibold transition-all duration-300 ${location.pathname === link.to ? 'text-accent border-b-2 border-accent' : 'text-text'} hover:text-primary`}
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -100,9 +99,9 @@ const Navbar = () => {
               ))}
               <Link to="/contact">
                 <button
-                  className="mt-8 bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full text-base font-semibold shadow-md transition-all duration-300 animate-pulse hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="mt-8 bg-accent text-white px-7 py-2 rounded-full text-base font-bold shadow-md transition-all duration-300 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-accent"
                 >
-                  Start Writing Now
+                  Get Started
                 </button>
               </Link>
             </nav>
