@@ -4,31 +4,31 @@ import TestimonialCard from './TestimonialCard';
 const ServicesTestimonials = () => {
   const testimonials = [
     {
-      quote: "The dissertation writing service was exceptional. The writer understood my requirements perfectly and delivered outstanding work.",
-      author: "Sarah Johnson",
-      role: "PhD Student",
+      quote: "EduNova's support was a game-changer for my thesis. The team was responsive and the quality exceeded my expectations.",
+      author: "Jessica Lee",
+      role: "MSc Student, University of Manchester",
+      initials: "J",
+      bgColor: "bg-blue-400"
+    },
+    {
+      quote: "I got help with my coding assignment and not only did I pass, but I learned a lot from the feedback provided.",
+      author: "Ahmed Patel",
+      role: "BSc Computer Science, University of Birmingham",
+      initials: "A",
+      bgColor: "bg-green-400"
+    },
+    {
+      quote: "The finance project support was detailed and professional. Highly recommend EduNova for any academic work!",
+      author: "Sophie Turner",
+      role: "MBA Student, University of Leeds",
       initials: "S",
-      bgColor: "bg-pink-400"
+      bgColor: "bg-purple-400"
     },
     {
-      quote: "I received an A+ on my research paper. The quality of writing and depth of research exceeded my expectations.",
-      author: "Michael Chen",
-      role: "Master's Student",
-      initials: "M",
-      bgColor: "bg-pink-400"
-    },
-    {
-      quote: "The essay writing service helped me improve my academic performance significantly. Highly recommended!",
-      author: "Emily Brown",
-      role: "Undergraduate",
-      initials: "E",
-      bgColor: "bg-pink-400"
-    },
-    {
-      quote: "Outstanding thesis writing support. The team was professional, knowledgeable, and delivered on time.",
-      author: "David Wilson",
-      role: "Graduate Student",
-      initials: "D",
+      quote: "Quick turnaround and excellent communication. My literature review was top-notch.",
+      author: "Liam O'Connor",
+      role: "PhD Candidate, University of Glasgow",
+      initials: "L",
       bgColor: "bg-pink-400"
     }
   ];

@@ -5,25 +5,31 @@ import ServiceCard from './ServiceCard';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AcademicCapIcon, DocumentTextIcon, BeakerIcon, BookOpenIcon, ClipboardDocumentListIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import writingImg from '../assets/writing.jpg';
+import essayImg from '../assets/essay.jpg';
+import researchImg from '../assets/research.jpg';
+import literatureImg from '../assets/literature.jpg';
+import thesisImg from '../assets/thesis.jpg';
+import reviewImg from '../assets/review.jpg';
 
 const services = [
   {
-    icon: <AcademicCapIcon className="w-8 h-8" />, title: 'Dissertation Writing', description: 'Expert guidance and writing support for your dissertation, from proposal to final submission.', price: 'Starting at $25/page'
+    image: writingImg, title: 'Dissertation Writing', description: 'Expert guidance and writing support for your dissertation, from proposal to final submission.'
   },
   {
-    icon: <PencilSquareIcon className="w-8 h-8" />, title: 'Essay Writing', description: 'Professional essay writing services for all academic levels and subjects.', price: 'Starting at $15/page'
+    image: essayImg, title: 'Essay Writing', description: 'Professional essay writing services for all academic levels and subjects.'
   },
   {
-    icon: <BeakerIcon className="w-8 h-8" />, title: 'Research Papers', description: 'In-depth research and writing for academic papers with proper citations and formatting.', price: 'Starting at $20/page'
+    image: researchImg, title: 'Research Papers', description: 'In-depth research and writing for academic papers with proper citations and formatting.'
   },
   {
-    icon: <ClipboardDocumentListIcon className="w-8 h-8" />, title: 'Literature Reviews', description: 'Comprehensive literature reviews with critical analysis and synthesis.', price: 'Starting at $22/page'
+    image: literatureImg, title: 'Literature Reviews', description: 'Comprehensive literature reviews with critical analysis and synthesis.'
   },
   {
-    icon: <BookOpenIcon className="w-8 h-8" />, title: 'Thesis Writing', description: 'Full thesis writing and editing services with expert academic writers.', price: 'Starting at $28/page'
+    image: thesisImg, title: 'Thesis Writing', description: 'Full thesis writing and editing services with expert academic writers.'
   },
   {
-    icon: <DocumentTextIcon className="w-8 h-8" />, title: 'Review Papers', description: 'Detailed review papers and article critiques across all disciplines.', price: 'Starting at $18/page'
+    image: reviewImg, title: 'Review Papers', description: 'Detailed review papers and article critiques across all disciplines.'
   }
 ];
 
@@ -67,7 +73,7 @@ const ServicesSection = () => {
             {services.map((service, index) => (
               <div key={index} className="px-4">
                 <ServiceCard
-                  icon={service.icon}
+                  image={service.image}
                   title={service.title}
                   description={service.description}
                   price={service.price}

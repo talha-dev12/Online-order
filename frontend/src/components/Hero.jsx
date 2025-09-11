@@ -18,47 +18,58 @@ const particlesOptions = {
   },
 };
 
-const Hero = ({ backgroundImage }) => {
+const Hero = ({ backgroundImage, animatedHero }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate('/contact');
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
   return (
-    <section className="relative overflow-hidden min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-primary to-secondary pointer-events-none">
+    <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-tr from-primary via-accent to-secondary overflow-hidden">
       {backgroundImage && (
-        <img src={backgroundImage} alt="Books background" className="absolute inset-0 w-full h-full object-cover opacity-30 z-0" />
+        <img src={backgroundImage} alt="Books background" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-multiply z-0" />
       )}
-      <div className="absolute inset-0 z-0">
-        <Particles options={particlesOptions} />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-secondary/70" />
-      </div>
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 text-center pointer-events-auto">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-lg"
-        >
-          Unlock Your Academic Potential<br />
-          with <span className="text-primary font-extrabold">Global</span><span className="text-accent font-semibold">assigntech</span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7 }}
-          className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 max-w-2xl mx-auto"
-        >
-          Professional writing for essays, dissertations, research papers, and more. Elevate your grades with expert help.
-        </motion.p>
+      <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 via-accent/60 to-secondary/80 z-0" />
+      {animatedHero && <div className="absolute inset-0 bg-black/40 z-10" />}
+      <div className={`relative z-20 max-w-3xl mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32 text-center${animatedHero ? '' : ''}`}>
+        {animatedHero ? (
+          <>
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-tight drop-shadow-xl"
+            >
+              Achieve Academic Excellence<br />
+              with <span className="text-accent">EduNova</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-xl sm:text-2xl lg:text-3xl text-white/90 mb-10 max-w-2xl mx-auto"
+            >
+              Innovative writing solutions for essays, dissertations, research papers, and more. Let us help you shine.
+            </motion.p>
+          </>
+        ) : (
+          <>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-tight drop-shadow-xl">
+              Achieve Academic Excellence<br />
+              with <span className="text-accent">EduNova</span>
+            </h1>
+            <p className="text-xl sm:text-2xl lg:text-3xl text-white/90 mb-10 max-w-2xl mx-auto">
+              Innovative writing solutions for essays, dissertations, research papers, and more. Let us help you shine.
+            </p>
+          </>
+        )}
         <motion.button
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.97 }}
-          className="px-8 py-4 rounded-full text-lg font-semibold bg-white text-primary shadow-neumorphic transition-all duration-300 hover:shadow-neumorphic-hover focus:outline-none"
-          style={{ boxShadow: '8px 8px 24px #d1d5db, -8px -8px 24px #fff' }}
+          className="px-10 py-4 rounded-full text-xl font-bold bg-white text-accent shadow-lg transition-all duration-300 hover:bg-accent hover:text-white focus:outline-none"
           onClick={handleClick}
         >
-          Start Writing Now
+          Get Started
         </motion.button>
       </div>
     </section>
